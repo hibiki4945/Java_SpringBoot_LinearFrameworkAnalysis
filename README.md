@@ -139,7 +139,7 @@
   
 ## PostMan+Controller 與 Test 的關係 :   
 ##   1. Test :    
-                 用來測試Service的所有功能，是否正常  
+                 用來測試Service的所有功能，是否正常。
                 (可以把Test想成一個   
                  調皮的PostMan使用者  
                  最喜歡的事情就是  
