@@ -1,30 +1,30 @@
-# Java_SpringBoot_線性架構的解析
+# Java_SpringBoot_線性架構的解析 
 
-- SpringBoot的線性架構1(發送請求)
-  PostMan->Controller->Service->Dao->(Entity)->DataBase
-  (用戶)                                       (資料)
+- SpringBoot的線性架構1(發送請求)   
+  PostMan->Controller->Service->Dao->(Entity)->DataBase  
+  (用戶)                                       (資料)  
 - SpringBoot的線性架構1(回傳結果)
-  PostMan<-Controller<-Service<-Dao<-(Entity)<-DataBase
-  (用戶)                                       (資料)
-- SpringBoot的線性架構2(發送請求)
-  Test->Service->Dao->(Entity)->DataBase
-  (用戶)                        (資料)
-- SpringBoot的線性架構2(回傳結果)
-  Test<-Service<-Dao<-(Entity)<-DataBase
-  (用戶)                        (資料)
-- 此線性架構用做'用戶'對'資料'的雙向溝通
-- 
-- 以下將以對話形式，做解說。
-----------------------分隔線(情境開始)
-    -------------------分隔線(以下是'發送請求'的部份)
-PostMan : 我想了解台灣的美食
-                ，於是我找到一個API(Java的SpringBoot架構)
-                ，然後我發現這個API
-                ，這個API有2個功能，分別是 1. 輸入'城市'，得到對應的'美食'列表
-                                         2. 輸入'美食'，得到對應的'城市'列表
-                ，因為我現在在環島
-                ，又剛好對'麵線糊'感興趣
-                ，所以我要對這個API，使用方法2(輸入'麵線糊')。
+  PostMan<-Controller<-Service<-Dao<-(Entity)<-DataBase  
+  (用戶)                                       (資料)  
+- SpringBoot的線性架構2(發送請求)  
+  Test->Service->Dao->(Entity)->DataBase  
+  (用戶)                        (資料)  
+- SpringBoot的線性架構2(回傳結果)  
+  Test<-Service<-Dao<-(Entity)<-DataBase  
+  (用戶)                        (資料)  
+- 此線性架構用做'用戶'對'資料'的雙向溝通  
+-   
+- 以下將以對話形式，做解說。  
+----------------------分隔線(情境開始)  
+    -------------------分隔線(以下是'發送請求'的部份)  
+PostMan : 我想了解台灣的美食  
+                ，於是我找到一個API(Java的SpringBoot架構)  
+                ，然後我發現這個API  
+                ，這個API有2個功能，分別是 1. 輸入'城市'，得到對應的'美食'列表  
+                                         2. 輸入'美食'，得到對應的'城市'列表  
+                ，因為我現在在環島  
+                ，又剛好對'麵線糊'感興趣  
+                ，所以我要對這個API，使用方法2(輸入'麵線糊')。  
 PostMan -> Controller : 
                 方法2(麵線糊)
 Controller : 今天接收到一個命令
