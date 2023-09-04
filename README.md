@@ -1,23 +1,23 @@
 # Java_SpringBoot_線性架構的解析 
 
-- SpringBoot的線性架構1(發送請求)   
+##- SpringBoot的線性架構1(發送請求)   
   PostMan->Controller->Service->Dao->(Entity)->DataBase  
   (用戶)                                       (資料)  
-- SpringBoot的線性架構1(回傳結果)
+##- SpringBoot的線性架構1(回傳結果)
   PostMan<-Controller<-Service<-Dao<-(Entity)<-DataBase  
   (用戶)                                       (資料)  
-- SpringBoot的線性架構2(發送請求)  
+##- SpringBoot的線性架構2(發送請求)  
   Test->Service->Dao->(Entity)->DataBase  
   (用戶)                        (資料)  
-- SpringBoot的線性架構2(回傳結果)  
+##- SpringBoot的線性架構2(回傳結果)  
   Test<-Service<-Dao<-(Entity)<-DataBase  
   (用戶)                        (資料)  
-- 此線性架構用做'用戶'對'資料'的雙向溝通  
+##- 此線性架構用做'用戶'對'資料'的雙向溝通  
 -   
 - 以下將以對話形式，做解說。  
 ----------------------分隔線(情境開始)  
     -------------------分隔線(以下是'發送請求'的部份)  
-PostMan : 我想了解台灣的美食  
+###PostMan : 我想了解台灣的美食  
                 ，於是我找到一個API(Java的SpringBoot架構)  
                 ，然後我發現這個API  
                 ，這個API有2個功能，分別是  
@@ -26,9 +26,9 @@ PostMan : 我想了解台灣的美食
                 ，因為我現在在環島  
                 ，又剛好對'麵線糊'感興趣  
                 ，所以我要對這個API，使用方法2(輸入'麵線糊')。  
-PostMan -> Controller : 
+###PostMan -> Controller : 
                 方法2(麵線糊)  
-Controller : 今天接收到一個命令  
+###Controller : 今天接收到一個命令  
                    命令的內容是，查詢各'城市'的'麵線糊'情報  
                    ，但其實我連什麼是'城市'都不知道  
                    ，還好我知道有誰知道  
@@ -38,8 +38,8 @@ Controller : 今天接收到一個命令
                                                   1. 輸入'城市'，得到對應的'完整資料'  
                                                   2. 輸入'美食'，得到對應的'完整資料'  
                    ，所以我要對Service，使用方法2(輸入'麵線糊')。  
-Controller -> Service : 方法2('麵線糊')  
-Service : 今天接收到一個命令  
+###Controller -> Service : 方法2('麵線糊')  
+###Service : 今天接收到一個命令  
 			  ，我需要先對這個命令 做一些檢查  
 		    ...看起來沒什麼問題  
         ，命令的內容是，查詢各'城市'的'麵線糊'情報  
@@ -53,8 +53,8 @@ Service : 今天接收到一個命令
                       輸入'美食'，得到對應的'資料'列表  
         ，正好符合我的需求  
         ，所以我要對Dao，使用方法x(輸入'麵線糊')。  
-Service -> Dao : 方法x('麵線糊')  
-Dao :    今天接收到一個命令  
+###Service -> Dao : 方法x('麵線糊')  
+###Dao :    今天接收到一個命令  
          ，命令的內容是，查詢各'城市'的'麵線糊'情報  
          ，我什麼都不知道  
          ，我只知道，我現在需要問DataBase  
@@ -70,15 +70,15 @@ Dao :    今天接收到一個命令
          ，我只需要跟他說，需要回傳的'變數'名稱  
          ，他就知道，這個'變數'對應到的是，哪個'欄位'  
          ，如此，我與DataBase的溝通，就沒問題了。  
-Dao -> (Entity) -> DataBase :   
+###Dao -> (Entity) -> DataBase :   
          在'美食'這個欄位，有沒有'麵線糊'?  
          ，如果有，就回傳對應的'資料'列表!。  
     -------------------分隔線(以下是'回傳結果'的部份)  
-DataBase -> (Entity) -> Dao :   
+###DataBase -> (Entity) -> Dao :   
 	     [對應的'資料'列表]  
-Dao -> Service :   
+###Dao -> Service :   
 	     [對應的'資料'列表]  
-Service :   
+###Service :   
     收到回傳的'資料'列表了  
     ，我需要先對這個'資料'列表 做一些檢查  
 		...看起來是一個空的'資料'列表  
@@ -103,23 +103,26 @@ Service :
 		，資料庫裡沒有'麵線糊'  
 		，因此，錯誤碼="400" & 錯誤訊息="資料庫裡 沒有'麵線糊'!"  
 		，最後，我需要將 ??Response 做回傳。  
-Controller -> PostMan :   
+###Controller -> PostMan :   
         [??Response]  
-PostMan :   
+###PostMan :   
         什麼?沒有麵線糊!  
         ，這個API好爛 換一個!  
 ----------------------分隔線(情境結束)  
   
   
-'溝通格式'(溝通語言)的補充 :   
-       1. Requst :     PostMan說給Controller聽  
+##'溝通格式'(溝通語言)的補充 :   
+###       1. Requst :     
+                          PostMan說給Controller聽  
                          ，並且   
                          ，Controller得到足夠的情報，來處理接下來的動作。  
-       2. Response :   Service說給Controller 聽  
+###       2. Response :   
+                          Service說給Controller 聽  
                          ，Controller再轉達給PostMan聽  
                          ，並且   
                          ，PostMan得到足夠的情報，並滿足的離開。  
-       3. Entity :     Dao說給DataBase聽  
+###       3. Entity :     
+                          Dao說給DataBase聽  
                          ，DataBase 再說給 Dao 聽  
                          (可以想成1種，Dao與DataBase，之間的語言)  
                          ，並且  
@@ -128,13 +131,14 @@ PostMan :
                                 ，所設計的  
                                 ，Dao說給DataBase聽的，1種'命令傳達'語句)  
   
-PostMan+Controller 與 Test 的關係 :   
-   1. Test :    用來測試 Service的所有功能 是否正常  
+##PostMan+Controller 與 Test 的關係 :   
+##   1. Test :    
+                 用來測試 Service的所有功能 是否正常  
                 (可以把Test想成一個   
                  調皮的PostMan使用者  
                  最喜歡的事情就是  
                  挑Service的毛病)  
-    2. PostMan+Controller :   
+##   2. PostMan+Controller :   
             PostMan = 使用者介面(前端)  
             Controller = 使用者介面(PostMan) 與 Service 的中間人  
                          (在基本的應用裡 Controller只會負責'資訊轉達'的工作)  
